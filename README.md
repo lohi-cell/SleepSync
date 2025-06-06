@@ -62,9 +62,9 @@ Data preprocessing included encoding categorical variables, splitting blood pres
 
 ## 🖼️ Screenshots
 
-![Input Form](screenshots/input_form.png)  
+![Input Form](static/sleepsync.jpg)  
 *Input form for user data*
 
-![Prediction Result](screenshots/prediction_result.png)  
+![Prediction Result](static/output.png)  
 *Prediction result displayed*
 
