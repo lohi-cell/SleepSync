@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sleep Disorder Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Sleep Disorder Prediction</h1>
+      <img
+        src="{{ url_for('static', filename='sleep.png') }}"  
+        alt="Sleep Illustration"
+        class="header-img"
+      />
+    </header>
+
+    {% if prediction %}
+    <div class="prediction-box">
+    <strong>{{ prediction }}</strong>
+    {% if advice %}
+      <p style="margin-top: 10px; font-weight: 500; color: #444;">
+        {{ advice }}
+      </p>
+    {% endif %}
+    </div>
+    {% endif %}
+
+
+    <form action="/predict" method="post" class="prediction-form">
+
+      <label for="gender">Gender:</label>
+      <select name="Gender" id="gender" required>
+          <option value="" disabled selected>Select Gender</option>
+          {% for gender in genders %}
+              <option value="{{ gender }}">{{ gender }}</option>
+          {% endfor %}
+      </select>
+
+      <label for="age">Age:</label>
+      <input type="number" name="Age" id="age" required min="0" max="120" />
+
+      <label for="occupation">Occupation:</label>
+      <select name="Occupation" id="occupation" required>
+          <option value="" disabled selected>Select Occupation</option>
+          {% for occ in occupations %}
+              <option value="{{ occ }}">{{ occ }}</option>
+          {% endfor %}
+      </select>
+
+      <label for="sleepDuration">Sleep Duration (hours):</label>
+      <input type="number" name="SleepDuration" id="sleepDuration" step="0.1" min="0" max="24" required />
+
+      <label for="qualityOfSleep">Quality of Sleep (1–10):</label>
+      <input type="number" name="QualityOfSleep" id="qualityOfSleep" min="1" max="10" required />
+
+      <label for="physicalActivityLevel">Physical Activity Level (1–100):</label>
+      <input type="number" name="PhysicalActivityLevel" id="physicalActivityLevel" min="1" max="100" required />
+
+      <label for="stressLevel">Stress Level (1–10):</label>
+      <input type="number" name="StressLevel" id="stressLevel" min="1" max="10" required />
+
+      <label for="bmiCategory">BMI Category:</label>
+      <select name="BMICategory" id="bmiCategory" required>
+          <option value="" disabled selected>Select BMI Category</option>
+          {% for b in bmi_categories %}
+              <option value="{{ b }}">{{ b }}</option>
+          {% endfor %}
+      </select>
+
+      <label for="heartRate">Heart Rate:</label>
+      <input type="number" name="HeartRate" id="heartRate" required min="30" max="200" />
+
+      <label for="dailySteps">Daily Steps:</label>
+      <input type="number" name="DailySteps" id="dailySteps" required min="0" max="100000" />
+
+      <label for="systolic">Systolic BP:</label>
+      <input type="number" name="Systolic" id="systolic" required min="50" max="250" />
+
+      <label for="diastolic">Diastolic BP:</label>
+      <input type="number" name="Diastolic" id="diastolic" required min="30" max="150" />
+
+      <button type="submit" class="btn-submit">Predict</button>
+    </form>
+  </div>
+</body>
+</html>
